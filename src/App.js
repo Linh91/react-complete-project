@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 
 import './App.css';
-// import Person from './Person/Person';
-import Validation from './Validation/Validation';
+import Person from './Person/Person';
 
 class App extends Component {
   state = {
-    // persons: [
-    //   { id: '1', name: "Sam", age: 27 },
-    //   { id: '2', name: "Thai", age: 34 },
-    //   { id: '3', name: "Anna", age: 35 }
-    // ],
-    // showPersons: false
-    username: ''
+    persons: [
+      { id: '1', name: "Sam", age: 27 },
+      { id: '2', name: "Thai", age: 34 },
+      { id: '3', name: "Anna", age: 35 }
+    ],
+    showPersons: false
   }
 
   togglePersonsHandler = () => {
@@ -48,44 +46,40 @@ class App extends Component {
   }
 
   render() { // method to render to the screen
-    // const style = {
-    //   backgroundColor: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer'
-    // }
+    const style = {
+      backgroundColor: 'green',
+      color: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
 
-    // let persons = null;
+    let persons = null;
 
-    // if (this.state.showPersons) {
-    //   persons = (
-    //     <div>
-    //       {this.state.persons.map((person, index) => {
-    //         return <Person
-    //                 click={() => this.deletPersonHandler(index)}
-    //                 name={person.name}
-    //                 age={person.age}
-    //                 key={person.id}
-    //                 changed={(event) => this.nameChangedHandler(event, person.id)}/>
-    //       })}
-    //   </div>
-    //   )
-    // }
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return <Person
+                    click={() => this.deletPersonHandler(index)}
+                    name={person.name}
+                    age={person.age}
+                    key={person.id}
+                    changed={(event) => this.nameChangedHandler(event, person.id)}/>
+          })}
+      </div>
+      )
+      style.backgroundColor = 'red';
+    }
     
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        {/* <button 
+        <button 
           style={style}
           onClick={this.togglePersonsHandler}>Switch name</button>
-          {persons} */}
-          <input 
-            type="text"
-            onChange={this.charHandler} 
-            value={this.state.username}/>
-          <p>Number of characters: {this.state.username}</p>
-          <Validation length={this.state.username.length} />
+          {persons}
       </div>
     );
   }
