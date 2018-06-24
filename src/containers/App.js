@@ -7,6 +7,8 @@ import Persons from '../components/Persons/Persons';
 import WithClass from '../hoc/WithClass';
 import wrapClass from '../hoc/WrapClass';
 
+export const AuthContext = React.createContext(false);
+
 class App extends Component {
   state = {
     persons: [
@@ -15,7 +17,8 @@ class App extends Component {
       { id: '3', name: "Anna", age: 35 }
     ],
     showPersons: false,
-    toggleClickedCounter: 0
+    toggleClickedCounter: 0,
+    authenticated: false
   }
 
   togglePersonsHandler = () => {
@@ -54,6 +57,10 @@ class App extends Component {
     this.setState({username: event.target.value})
   }
 
+  logHandler = () => {
+    this.setState({authenticated: true});
+  }
+
   render() { // method to render to the screen
     let persons = null;
 
@@ -68,9 +75,13 @@ class App extends Component {
       <Aux>
         <Cockpit
           showPersons={this.state.showPersons}
+          login={this.logHandler}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}/>
-          {persons}
+          <AuthContext.Provider
+            value={this.state.authenticated}>
+              {persons}
+            </AuthContext.Provider>
       </Aux>
     );
   }
