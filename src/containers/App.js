@@ -76,6 +76,6 @@ class App extends Component {
   }
 }
 
-export default wrapClass(App, classes.App);
+export default WithClass(App, classes.App);
 
 // this refers to the class App
