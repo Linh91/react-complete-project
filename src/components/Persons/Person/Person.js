@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
 
-import claases from './Person.css';
-import WithClass from '../../../hoc/WithClass';
+import classes from './Person.css';
+import Aux from '../../../hoc/Aux';
+import wrapClass from '../../../hoc/WrapClass';
 
 class Person extends Component {
     render () {
         return (   
-            <WithClass classes={claases.Person}>
+            <Aux>
                 <p onClick={this.props.click}>I'm a {this.props.name} and I am {this.props.age} years old !</p>
                 <p>{this.props.children}</p>
                 <input type="text" onChange={this.props.changed} value={this.props.name}/>
-            </WithClass>
+            </Aux>
         ) 
     }
 }
 
-export default Person;
+export default wrapClass(Person, classes.Person);

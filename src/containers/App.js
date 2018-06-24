@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
+import Aux from '../hoc/Aux';
 import classes from './App.css';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
 import WithClass from '../hoc/WithClass';
+import wrapClass from '../hoc/WrapClass';
 
 class App extends Component {
   state = {
@@ -59,17 +61,17 @@ class App extends Component {
     } 
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}/>
           {persons}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default wrapClass(App, classes.App);
 
 // this refers to the class App
