@@ -14,13 +14,17 @@ class App extends Component {
       { id: '2', name: "Thai", age: 34 },
       { id: '3', name: "Anna", age: 35 }
     ],
-    showPersons: false
+    showPersons: false,
+    toggleClickedCounter: 0
   }
 
   togglePersonsHandler = () => {
     console.log('clicked');
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow})
+    this.setState({
+      showPersons: !doesShow,
+      toggleClicked: this.state.toggleClickedCounter + 1
+    });
   }
 
   deletPersonHandler = (personIndex) => {
